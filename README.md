@@ -38,3 +38,6 @@ De code is bedoeld om vrijwilligers makkelijk toegang te geven tot het administr
 * Beheerders moeten samenvattende gegevens kunnen raadplegen (totaal geld ingezameld, Payconiq code...)
 * Export naar PDF
 * Aanmaak unieke codes voor zowel vrijwilligers als partners
+* Aanmaak overeenkomst/contract voor de vrijwilligers en partners/verenigingen.
+
+
