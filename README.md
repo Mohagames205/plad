@@ -9,9 +9,15 @@ Plad is een nieuw project. In dit document vind je een roadmap.
 * Codes genereren voor vrijwilligers
 * Een code is gekoppeld aan de volgende data:
 
-| Code | Locatie | Tijdstip | Verwachte vrijwilligers | Aantal pleisters mee | Hoeveelheid geld meegekregen | Payconiq UID |
-|---|---|---|----|---|---|---|
-|VERK-68862|Colruyt Bierbeek|5 oktober 2001 14u30 - 16u30| Tim, Bob|1000|€50|5|
+| Data | Voorbeeld |
+| ---| --- |
+| **Code** | VERK-68862 |
+| **Locatie** | Colruyt Bierbeek |
+| **Tijdstip** | 5 oktober 2001 14u30 - 16u30 |
+|**Verwachte vrijwilligers** | Tim, Bob |
+| **Aantal pleisters mee** | 1000 |
+| **Hoeveelheid geld meegekregen** | €50 |
+| **Payconiq UID** | 5 |
 
 De code is bedoeld om vrijwilligers makkelijk toegang te geven tot het administratieplatform (plad). 
 
