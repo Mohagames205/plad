@@ -10,4 +10,7 @@ class CollectionEvent extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $fillable = ['status'];
+
 }
