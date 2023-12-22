@@ -58,7 +58,8 @@
                     <p><span class="font-bold">Ontvangen pleisters:</span> {{ $collectionEvent->bandage_count }}</p>
                     <p><span class="font-bold">Ontvangen wisselgeld:</span> €{{ $collectionEvent->change_received }}</p>
                     <p><span class="font-bold">Payconiq UID:</span> {{ $collectionEvent->payconiq_uid }}</p>
-                    <p>....</p>
+
+                    
 
 
                 </div>
