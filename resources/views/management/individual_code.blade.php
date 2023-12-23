@@ -135,6 +135,8 @@
                         </div>
                     </div>
 
+
+                    @if($event->comment)
                     <div class="basis-1 p-8">
                         <div class="flex gap-10 justify-center">
                             <div id="bandages-sold" class="basis-1/2 rounded-lg mt-8 shadow-sm p-8 border border-gray-200 bg-white max-w-sm">
@@ -155,6 +157,8 @@
 
                         </div>
                     </div>
+
+                    @endif
 
 
 
