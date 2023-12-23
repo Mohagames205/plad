@@ -22,50 +22,55 @@
 
                     <form method="POST">
                         @csrf
-                        <div class="mt-4">
-                            <x-input-label for="code">Unieke code</x-input-label>
-                            <x-text-input type="text" name="code" id="code" value="Na aanmaak wordt een code aangemaakt" class="block w-1/3" read-only disabled/>
-                        </div>
+
+
+                        <h3 class="font-semibold text-xl">Praktisch</h3>
+                        <p class="text-gray-500">Wie, wat, waar en wanneer! Zo simpel is het.</p>
 
                         <div class="mt-4">
                             <x-input-label for="location">Locatie</x-input-label>
-                            <x-text-input type="text" name="location" id="location" class="block w-1/3"/>
+                            <x-text-input type="text" name="location" id="location" class="block w-1/2"/>
 
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="start_time">Starttijd</x-input-label>
-                            <x-text-input type="datetime-local" name="start_time" id="start_time" class="block w-1/3"/>
+                            <x-text-input type="datetime-local" name="start_time" id="start_time" class="block w-1/2"/>
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="end_time">Eindtijd</x-input-label>
-                            <x-text-input type="datetime-local" name="end_time" id="end_time" class="block w-1/3"/>
+                            <x-text-input type="datetime-local" name="end_time" id="end_time" class="block w-1/2"/>
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="volunteers">Vrijwilligers</x-input-label>
-                            <x-text-input type="text" name="volunteers" id="volunteers" class="block w-1/3"/>
+                            <x-text-input type="text" name="volunteers" id="volunteers" class="block w-1/2"/>
                         </div>
+
+                        <hr class="mt-10">
+
+                        <h3 class="font-semibold text-xl mt-7">Materiaal</h3>
+                        <p class="text-gray-500">Wat gaat er allemaal mee?</p>
 
                         <div class="mt-4">
                             <x-input-label for="bandage_count">Aantal pleisters</x-input-label>
-                            <x-text-input type="number" name="bandage_count" id="bandage_count" class="block w-1/3"/>
+                            <x-text-input type="number" name="bandage_count" id="bandage_count" class="block w-1/2"/>
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="change_received">Wisselgeld</x-input-label>
-                            <x-text-input type="number" name="change_received" id="change_received" class="block w-1/3"/>
+                            <x-text-input type="number" name="change_received" id="change_received" class="block w-1/2"/>
                         </div>
 
                         <div class="mt-4">
                             <x-input-label for="payconiq_uid">Payconiq-nummer</x-input-label>
-                            <x-text-input type="number" name="payconiq_uid" id="payconiq_uid" class="block w-1/3"/>
+                            <x-text-input type="number" name="payconiq_uid" id="payconiq_uid" class="block w-1/2"/>
                         </div>
 
                         <div class="mt-4">
                             <label for="status" class="block mb-2 text-sm font-medium text-gray-900">Status</label>
-                            <select id="status" name="status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5">
+                            <select id="status" name="status" class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-1/4 p-2.5">
                                 <option selected>Selecteer een status</option>
                                 <option value="0">Concept</option>
                                 <option value="1">Actief</option>
@@ -73,6 +78,10 @@
                             </select>
 
                         </div>
+
+                        <hr class="mt-10">
+
+                        <h3 class="font-semibold text-xl mt-7">Ready, set, go!</h3>
 
                         <x-primary-button class="mt-5" type="submit">Aanmaken</x-primary-button>
                     </form>
