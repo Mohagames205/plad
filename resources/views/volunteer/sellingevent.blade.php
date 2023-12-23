@@ -8,26 +8,28 @@
     </x-slot>
 
 
-    <div class="py-12">
+    <div class="py-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class=" overflow-hidden sm:rounded-lg">
+
                 <div class="p-6 text-gray-900">
-
-                    <div class="bg-red-500 p-6 text-white mt-5 rounded-lg mb-4">
-                        <p class="font-bold">Hulp nodig? Snap je iets niet? Gaat er iets mis met de verkoop?</p>
-
-                        <p> Stuur dan een e-mail naar pr@leuven.rodekruis.be.<p>
+                    <div class="flex mb-4 p-6 bg-red-500 text-white shadow rounded-lg">
+                        <h1 class="flex-1 text-2xl font-bold min-w-0">Pleisteractie #{{ $collectionEvent->code }}</h1>
+                        <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                        <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
+                        {{ \App\Enums\Status::from($collectionEvent->status)->readable() }}
+                    </span>
                     </div>
 
-                    <h1 class="text-2xl font-bold mb-4">Pleisteractie #{{ $collectionEvent->code }} <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{ \App\Enums\Status::from($collectionEvent->status)->readable() }}</span></h1>
                     <hr>
-                    <div class="flex gap-30 p-6">
+                    <div class="flex gap-10 p-6 my-6">
 
-                        <div id="fill-in">
+                        <div id="fill-in" class="basis-2/3 rounded-lg shadow-sm p-8 border border-gray-200 bg-white">
                             <h2 class="text-xl font-bold">Details aanvullen</h2>
-                            <div class="mb-3 text-md">
-                                Mogen we je vragen om de volgende gegevens zo correct mogelijk aan te vullen. Dit is heel belangrijk voor onze administratie!
+                            <div class="mb-3 text-md w-full">
+                                Hallo daar! Zou je alsjeblieft zo vriendelijk willen zijn om de onderstaande gegevens zo nauwkeurig mogelijk aan te vullen? Het helpt enorm bij onze administratie!
                             </div>
+
 
 
 
@@ -38,19 +40,19 @@
 
                                 <div class="mb-4">
                                     <x-input-label for="remaining_bandages" :value="__('Overgebleven pleisters')" />
-                                    <x-text-input id="remaining_bandages" class="block mt-1 w-1/2" type="number" name="remaining_bandages" required autofocus />
+                                    <x-text-input id="remaining_bandages" class="block mt-1 w-3/4" type="number" name="remaining_bandages" required autofocus />
                                 </div>
 
                                 <!-- Geldbedrag na verkoop -->
                                 <div class="mb-4">
                                     <x-input-label for="money_after_event" :value="__('Geld na verkoop')" />
-                                    <x-text-input id="money_after_event" class="block mt-1 w-1/2" type="text" name="money_after_event" required />
+                                    <x-text-input id="money_after_event" class="block mt-1 w-3/4" type="text" name="money_after_event" required />
                                 </div>
 
                                 <!-- Opmerkingen -->
                                 <div class="mb-4">
                                     <x-input-label for="comments" :value="__('Opmerkingen')" />
-                                    <textarea id="comments" class="block mt-1 w-1/2 border-gray-300 rounded-md shadow-sm focus:border-indigo-300" name="comments" rows="4"></textarea>
+                                    <textarea id="comments" class="block mt-1 w-3/4 border-gray-300 rounded-md shadow-sm focus:border-indigo-300" name="comments" rows="4"></textarea>
                                 </div>
 
                                 <x-primary-button class="mt-4">
@@ -63,9 +65,9 @@
 
 
 
-                        <div id="details">
+                        <div id="details" class="rounded-lg shadow-sm p-8 border border-gray-200 bg-white max-w-sm">
 
-                            <p class="font-bold text-xl">{{ $collectionEvent->location }}</p>
+                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">{{ $collectionEvent->location }}</h5>
 
                             <ol class="items-center sm:flex my-4">
                                 <li class="relative mb-6 sm:mb-0">
@@ -98,12 +100,34 @@
                                 </li>
                             </ol>
 
-                            <p><span class="font-bold">Vrijwilligers:</span> {{ implode(", ", json_decode($collectionEvent->volunteers)) }}</p>
-                            <p><span class="font-bold">Ontvangen pleisters:</span> {{ $collectionEvent->bandage_count }}</p>
-                            <p><span class="font-bold">Ontvangen wisselgeld:</span> €{{ $collectionEvent->change_received }}</p>
-                            <p><span class="font-bold">Payconiq UID:</span> {{ $collectionEvent->payconiq_uid }}</p>
+                            <div class="mt-8">
 
+                                <div class="px-2 my-3" >
+                                    <p class="text-sm text-gray-400">Vrijwilligers</p>
+                                    <p class="text-lg">{{ implode(", ", json_decode($collectionEvent->volunteers)) }}</p>
+                                </div>
 
+                                <hr>
+
+                                <div class="px-2 my-3">
+                                    <p class="text-sm text-gray-400">Ontvangen pleisters</p>
+                                    <p class="text-lg">{{$collectionEvent->bandage_count}}</p>
+                                </div>
+
+                                <hr>
+
+                                <div class="px-2 my-3">
+                                    <p class="text-sm text-gray-400">Ontvangen wisselgeld</p>
+                                    <p class="text-lg"> €{{$collectionEvent->change_received}} </p>
+                                </div>
+
+                                <hr>
+
+                                <div class="px-2 my-3">
+                                    <p class="text-sm text-gray-400">Payconiq codes</p>
+                                    <p class="text-lg"> {{ $collectionEvent->payconiq_uid }} </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
 

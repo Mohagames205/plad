@@ -54,12 +54,37 @@
                         </li>
                     </ol>
 
-                    <p><span class="font-bold">Vrijwilligers:</span> {{ implode(", ", json_decode($collectionEvent->volunteers)) }}</p>
-                    <p><span class="font-bold">Ontvangen pleisters:</span> {{ $collectionEvent->bandage_count }}</p>
-                    <p><span class="font-bold">Ontvangen wisselgeld:</span> €{{ $collectionEvent->change_received }}</p>
-                    <p><span class="font-bold">Payconiq UID:</span> {{ $collectionEvent->payconiq_uid }}</p>
+                    <div class="mt-8">
 
-                    
+                        <div class="px-2 my-3" >
+                            <p class="text-sm text-gray-400">Vrijwilligers</p>
+                            <p class="text-lg">{{ implode(", ", json_decode($collectionEvent->volunteers)) }}</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="px-2 my-3">
+                            <p class="text-sm text-gray-400">Ontvangen pleisters</p>
+                            <p class="text-lg">{{$collectionEvent->bandage_count}}</p>
+                        </div>
+
+                        <hr>
+
+                        <div class="px-2 my-3">
+                            <p class="text-sm text-gray-400">Ontvangen wisselgeld</p>
+                            <p class="text-lg"> €{{$collectionEvent->change_received}} </p>
+                        </div>
+
+                        <hr>
+
+                        <div class="px-2 my-3">
+                            <p class="text-sm text-gray-400">Payconiq codes</p>
+                            <p class="text-lg"> {{ $collectionEvent->payconiq_uid }} </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
 
                 </div>
