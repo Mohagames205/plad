@@ -29,10 +29,10 @@ class CodeController extends Controller
             'status' => ['required', Rule::enum(Status::class)],
         ]);
 
-        CollectionEvent::create($validated);
+        $created = CollectionEvent::create($validated);
 
         // TODO: return to code overview
-        return to_route('management.create_code');
+        return to_route('code.view', $created->id);
 
     }
 

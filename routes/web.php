@@ -39,9 +39,9 @@ Route::middleware('auth')->group(function () {
         return view('management.create_code');
     })->name('management.create_code');
 
-    Route::get('/code', [CodeController::class, 'listCodes']);
+    Route::get('/code', [CodeController::class, 'listCodes'])->name('code.list');
 
-    Route::get('/code/{id}', [CodeController::class, 'viewCode']);
+    Route::get('/code/{id}', [CodeController::class, 'viewCode'])->name('code.view');
 
     Route::get('/code/{id}/pdf', [CodeController::class, 'loadPdf']);
 
