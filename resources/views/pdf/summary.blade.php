@@ -31,6 +31,7 @@
             color: #2c3e50;
             font-size: 32px;
             margin-top: 10px;
+            text-align: left;
         }
         table {
             width: 100%;
@@ -59,9 +60,31 @@
             padding: 20px;
             border-radius: 8px;
         }
+
+        .expected-profits {
+            margin-top: 20px;
+            background-color: #f0d8d8;
+            border: 1px solid #e6c3c3;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .expected-profits strong {
+            color: darkred;
+        }
+
         .profit-summary strong {
             color: #155724;
         }
+
+        .warning {
+            background-color: #eed3a5;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid orange;
+            margin-top: 50px;
+        }
+
         .footer {
             text-align: center;
             padding-top: 20px;
@@ -95,7 +118,7 @@
             <td>{{ $code }}</td>
         </tr>
         <tr>
-            <td>Aantal Verbanden</td>
+            <td>Aantal pleisters</td>
             <td>{{ $bandage_count }}</td>
         </tr>
         <tr>
@@ -103,16 +126,16 @@
             <td>{{ implode(', ', json_decode($volunteers)) }}</td>
         </tr>
         <tr>
-            <td>Start Tijd</td>
+            <td>Starttijd</td>
             <td>{{ $start_time }}</td>
         </tr>
         <tr>
-            <td>Eind Tijd</td>
+            <td>Eindtijd</td>
             <td>{{ $end_time }}</td>
         </tr>
         <tr>
             <td>Status</td>
-            <td>{{ $status }}</td>
+            <td>{{ \App\Enums\Status::from($status)->readable() }}</td>
         </tr>
     </table>
 
@@ -125,11 +148,11 @@
                     <th>Waarde</th>
                 </tr>
                 <tr>
-                    <td>Geld Na Evenement</td>
+                    <td>Geld na verkoop</td>
                     <td>€{{ $money_after_event }}</td>
                 </tr>
                 <tr>
-                    <td>Resterende Verbanden</td>
+                    <td>Overgebleven pleisters</td>
                     <td>{{ $remaining_bandages }}</td>
                 </tr>
                 <tr>
@@ -138,7 +161,7 @@
                 </tr>
             </table>
         </div>
-    @endif
+
 
     <div class="profit-summary page-break">
         <h3>Samenvatting</h3>
@@ -148,18 +171,48 @@
                 <th>Waarde</th>
             </tr>
             <tr>
-                <td>Winst Gemaakt</td>
+                <td>Winst gemaakt</td>
                 <td>€{{ $money_after_event - $change_received }}</td>
             </tr>
             <tr>
-                <td>Verbanden Verkocht</td>
+                <td>Pleisters verkocht</td>
                 <td>{{ $bandage_count - $remaining_bandages }}</td>
             </tr>
         </table>
     </div>
 
+    <div class="expected-profits">
+        <h3>Verwachte waardes</h3>
+        <table>
+            <tr>
+                <th>Attribuut</th>
+                <th>Waarde</th>
+            </tr>
+            <tr>
+                <td>Verwachte winst¹</td>
+                <td>€{{ ($bandage_count - $remaining_bandages) * 10 }}</td>
+            </tr>
+            <tr>
+                <td>Offset²</td>
+                <td><strong>€{{ ($money_after_event - $change_received) - (($bandage_count - $remaining_bandages) * 10) }}</strong></td>
+            </tr>
+        </table>
+
+        <p>¹ Let erop dat deze waardes geen rekening houden met de originele aankoopprijs van de pleisters.</p>
+        <p>² De offset is het verschil tussen de <i>gemaakte winst</i> en de <i>verwachte winst</i>. Dit is dus de hoeveelheid geld die <i>theoretisch gezien</i> ontbreekt.</p>
+    </div>
+
+    @else
+
+        <div class="warning">
+            <h3>Opgepast!</h3>
+            <p> Sommige waardes en berekeningen ontbreken, omdat de vrijwilliger nog geen informatie heeft aangevuld voor deze verkoopactie. </p>
+        </div>
+
+    @endif
+
     <div class="footer">
-        <p>Gegenereerd op: {{ date('Y-m-d H:i:s') }}</p>
+        <p>Automatisch gegenereerd door PLAD (<b>PL</b>eisteractie <b>AD</b>ministratie) op: {{ date('Y-m-d H:i:s') }}</p>
     </div>
 </div>
 </body>

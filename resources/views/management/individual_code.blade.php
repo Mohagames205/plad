@@ -20,7 +20,7 @@
                     <div class="flex gap-10 p-6 my-6">
 
                         <div id="fill-in" class="basis-2/3 rounded-lg shadow-sm p-8 border border-gray-200 bg-white">
-                            <h2 class="text-xl font-bold">Ingevulde gegevens</h2>
+                            <h2 class="text-2xl tracking-tight text-gray-900 mb-2 font-bold">Ingevulde gegevens</h2>
                             <div class="mb-3 text-md w-full">
                               Dit zijn de gegevens die de vrijwilligers voor dit evenement hebben ingevuld.
                             </div>
@@ -138,6 +138,7 @@
 
                     @if($event->comment)
                     <div class="basis-1 p-8">
+                        <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Samenvatting</h3>
                         <div class="flex gap-10 justify-center">
                             <div id="bandages-sold" class="basis-1/2 rounded-lg mt-8 shadow-sm p-8 border border-gray-200 bg-white max-w-sm">
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Verkochte pleisters</h5>
@@ -152,7 +153,7 @@
 
                             <div id="bandages-sold" class="basis-1/2 rounded-lg mt-8 shadow-sm p-8 border border-gray-200 bg-white max-w-sm">
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">QR code</h5>
-                                {!! QrCode::size(300)->generate('https://localhost:8000/selling_event?code=' . $event->code) !!}
+                                <img src="data:image/png;base64,{!! base64_encode(QrCode::format('png')->size(300)->generate('https://localhost:8000/selling_event?code=' . $event->code)) !!}">
                             </div>
 
                         </div>
