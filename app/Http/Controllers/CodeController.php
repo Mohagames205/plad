@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Enums\Status;
 use App\Models\CollectionEvent;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 
@@ -28,12 +29,48 @@ class CodeController extends Controller
             'status' => ['required', Rule::enum(Status::class)],
         ]);
 
-
         CollectionEvent::create($validated);
 
         // TODO: return to code overview
         return to_route('management.create_code');
 
+    }
+
+    public function listCodes(Request $request) {
+
+
+        return view('management.code', ['events' => CollectionEvent::orderBy('start_time', 'desc')->get()]);
+    }
+
+    public function viewCode(Request $request) {
+        return view('management.individual_code', ['event' => CollectionEvent::find($request->id)]);
+    }
+
+    public function loadPdf(Request $request) {
+        $id = $request->id;
+
+        $event = CollectionEvent::find($request->id);
+
+        $info = [
+            "code" => $event->code,
+            "bandage_count" => $event->bandage_count,
+            "location" => $event->location,
+            "volunteers" => $event->volunteers,
+            "start_time" => $event->start_time,
+            "end_time" => $event->end_time,
+            "change_received" => $event->change_received,
+            "status" => $event->status,
+        ];
+
+        if ($event->comment) {
+            $info["comments"] = $event->comment->comments;
+            $info["money_after_event"] = $event->comment->money_after_event;
+            $info["remaining_bandages"] = $event->comment->remaining_bandages;
+        }
+
+
+        $pdf = PDF::loadView('pdf.summary', $info);
+        return $pdf->stream('text.pdf');
     }
 
 

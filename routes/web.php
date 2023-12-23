@@ -25,6 +25,7 @@ Route::get('/selling_event', [VolunteerController::class, 'view'])->name("sellin
 Route::post('/followup', [VolunteerController::class, 'createFollowup'])->name('create_followup');
 
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -37,6 +38,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/create_code', function () {
         return view('management.create_code');
     })->name('management.create_code');
+
+    Route::get('/code', [CodeController::class, 'listCodes']);
+
+    Route::get('/code/{id}', [CodeController::class, 'viewCode']);
+
+    Route::get('/code/{id}/pdf', [CodeController::class, 'loadPdf']);
 
     Route::post('/create_code', [CodeController::class, 'create']);
 });
