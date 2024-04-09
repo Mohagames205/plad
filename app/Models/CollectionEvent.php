@@ -17,4 +17,14 @@ class CollectionEvent extends Model
         return $this->hasOne(EventComment::class, 'collection_event_id');
     }
 
+    public function moneyValidation(): HasOne
+    {
+        return $this->hasOne(MoneyValidation::class, 'collection_event_id');
+    }
+
+
+    public function productValidation(): HasOne
+    {
+        return $this->hasOne(ProductValidation::class, 'collection_event_id');
+    }
 }

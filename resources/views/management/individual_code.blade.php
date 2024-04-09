@@ -13,51 +13,90 @@
                     <div class="rounded-lg shadow-sm p-8 border border-gray-200 bg-white m-6" id="action-buttons">
                         <a href="{{$event->id}}/pdf" target="_blank"> <x-primary-button>Genereer PDF</x-primary-button></a>
                         <x-primary-button>Aanpassen</x-primary-button>
-                        <x-primary-button>Heractiveren</x-primary-button>
-                        <x-primary-button>Verwijder</x-primary-button>
+                        <x-primary-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'status-change')">Status aanpassen</x-primary-button>
+                        @include('management.modals.edit-action-status-form')
+
+                        <form method="POST" class="inline">
+                            @csrf
+                            @method('DELETE')
+                            <x-danger-button type="submit">Verwijder verkoopactie</x-danger-button>
+                        </form>
 
                     </div>
+
                     <div class="flex gap-10 p-6 my-6">
 
                         <div id="fill-in" class="basis-2/3 rounded-lg shadow-sm p-8 border border-gray-200 bg-white">
+                            <div class="justify-between flex flex-col h-full">
+                            <div>
                             <h2 class="text-2xl tracking-tight text-gray-900 mb-2 font-bold">Ingevulde gegevens</h2>
-                            <div class="mb-3 text-md w-full">
-                              Dit zijn de gegevens die de vrijwilligers voor dit evenement hebben ingevuld.
-                            </div>
-
                             @if($event->comment)
 
-                                <div class="px-2 my-3" >
-                                    <p class="text-sm text-gray-400">Resterende pleisters</p>
-                                    <p class="text-lg">{{ $event->comment->remaining_bandages }}</p>
-                                </div>
-
-                                <hr>
-
-                                <div class="px-2 my-3">
-                                    <p class="text-sm text-gray-400">Resterend geld</p>
-                                    <p class="text-lg">€{{$event->comment->money_after_event}}</p>
-                                </div>
-
-                                <hr>
-
-                                <div class="px-2 my-3">
-                                    <p class="text-sm text-gray-400">Opmerkingen</p>
-                                    <p class="text-lg"> {{$event->comment->comments}} </p>
-                                </div>
 
 
-                                <hr>
+                                        <div class="mb-3 text-md w-full">
+                                            Dit zijn de gegevens die de vrijwilligers voor dit evenement hebben ingevuld.
+                                        </div>
+                                        <div class="px-2 my-3" >
+                                            <p class="text-sm text-gray-400">Resterende pleisters</p>
+                                            <div class="flex justify-between">
+                                                <p class="text-lg">{{ $event->comment->remaining_bandages }} </p>
+                                                @if(!$event->productValidation)
+                                                    <a href="{{ route('validation.bandages', ['id' => $event->id]) }}" class="bg-green-100 text-right hover:bg-green-200 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded border border-blue-400 inline-flex items-center justify-center">Verifieer</a>
+                                                @else
+                                                    <a class="text-green-800 hover:underline cursor-pointer" href="{{ route('validation.bandage.see', $event->id) }}">Geverifieerd ✓</a>
+                                                @endif
 
+                                            </div>
+                                        </div>
 
+                                        <hr>
 
+                                        <div class="px-2 my-3">
+                                            <p class="text-sm text-gray-400">Resterend geld</p>
+                                            <div class="flex justify-between">
+                                                <p class="text-lg">€{{ $event->comment->money_after_event }} </p>
+                                                @if(!$event->moneyValidation)
+                                                    <a href="{{ route('validation.money', ['id' => $event->id]) }}" class="bg-green-100 text-right hover:bg-green-200 text-green-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded border border-blue-400 inline-flex items-center justify-center">Verifieer</a>
+                                                @else
+                                                    <a class="text-green-800 hover:underline cursor-pointer" href="{{ route('validation.money.see', $event->id) }}">Geverifieerd ✓</a>
+                                                @endif
+                                            </div>
+                                        </div>
 
+                                        <hr>
+
+                                        <div class="px-2 my-3">
+                                            <p class="text-sm text-gray-400">Opmerkingen</p>
+                                            <p class="text-lg"> {{$event->comment->comments ?? 'Geen opmerking'}} </p>
+                                        </div>
+
+                                        <hr>
+                                    </div>
+                                    <div class="justify-end flex">
+                                        <form method="POST" action="{{ route('comment.delete', $event->id) }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <x-danger-button class="mt-5">Verwijder gegevens</x-danger-button>
+                                        </form>
+
+                                    </div>
 
 
                             @else
-                                <p>Er zijn nog geen gegevens aangevuld voor dit evenement!</p>
+                                <div class="mb-3 text-md w-full">
+                                    De vrijwilliger heeft nog geen gegevens ingevoerd voor deze inzamelactie
+                                </div>
+                                <div class="flex justify-center">
+                                    <img src="/storage/nothing_yet.png">
+                                </div>
+
+                            </div>
+
 
                             @endif
+
+                        </div>
 
                         </div>
 
@@ -135,10 +174,9 @@
                         </div>
                     </div>
 
-
-                    @if($event->comment)
                     <div class="basis-1 p-8">
                         <h3 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Samenvatting</h3>
+                        @if($event->comment)
                         <div class="flex gap-10 justify-center">
                             <div id="bandages-sold" class="basis-1/2 rounded-lg mt-8 shadow-sm p-8 border border-gray-200 bg-white max-w-sm">
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">Verkochte pleisters</h5>
@@ -151,15 +189,18 @@
                                 <p class="text-3xl text-center text-gray-700">€{{ $event->comment->money_after_event - $event->change_received }}</p>
                             </div>
 
+                    @endif
                             <div id="bandages-sold" class="basis-1/2 rounded-lg mt-8 shadow-sm p-8 border border-gray-200 bg-white max-w-sm">
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 text-center">QR code</h5>
                                 <img src="data:image/png;base64,{!! base64_encode(QrCode::format('png')->size(300)->generate('https://localhost:8000/selling_event?code=' . $event->code)) !!}">
                             </div>
 
                         </div>
+
+
                     </div>
 
-                    @endif
+
 
 
 
