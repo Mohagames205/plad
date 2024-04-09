@@ -101,7 +101,7 @@
 <body>
 <div class="content">
     <div class="header">
-        <img src="https://www.rodekruis.be/img/logo.svg?1670492344" alt="Bedrijfslogo" style="max-width: 100%; height: auto;">
+        <img src="./storage/logo.jpg" alt="Bedrijfslogo" style="max-width: 30%; height: auto;">
         <h1>Pleisteractie 2024</h1>
     </div>
     <table>
