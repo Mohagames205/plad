@@ -30,7 +30,7 @@ class VolunteerController extends Controller
         $validation = $request->validate([
             'remaining_bandages' => ['required', 'numeric'],
             'money_after_event' => ['required', 'numeric'],
-            'comments' => ['required', 'string'],
+            'comments' => ['nullable','string'],
         ]);
 
         $collectionEvent = CollectionEvent::where('code', $code)->firstOrFail();

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->timestamps();
             $table->integer('remaining_bandages');
             $table->float('money_after_event');
-            $table->text('comments');
+            $table->text('comments')->nullable();
             $table->foreignId("collection_event_id")->constrained('collection_events');
         });
     }
