@@ -13,9 +13,9 @@
             <div class=" overflow-hidden sm:rounded-lg">
 
                 <div class="p-6 text-gray-900">
-                    <div class="flex mb-4 p-6 bg-red-500 text-white shadow rounded-lg">
+                    <div class="flex mb-4 p-6 bg-blue-500 text-white shadow rounded-lg">
                         <h1 class="flex-1 text-2xl font-bold min-w-0">Pleisteractie #{{ $collectionEvent->code }}</h1>
-                        <span class="inline-flex items-center bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-green-900 dark:text-green-300">
+                        <span class="inline-flex items-center text-xs font-medium px-2.5 py-0.5 rounded-full bg-green-900 text-green-300">
                         <span class="w-2 h-2 me-1 bg-green-500 rounded-full"></span>
                         {{ \App\Enums\Status::from($collectionEvent->status)->readable() }}
                     </span>
@@ -25,6 +25,17 @@
                     <div class="flex gap-10 p-6 my-6">
 
                         <div id="fill-in" class="basis-2/3 rounded-lg shadow-sm p-8 border border-gray-200 bg-white">
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
                             <h2 class="text-xl font-bold">Details aanvullen</h2>
                             <div class="mb-3 text-md w-full">
                                 Hallo daar! Zou je alsjeblieft zo vriendelijk willen zijn om de onderstaande gegevens zo nauwkeurig mogelijk aan te vullen? Het helpt enorm bij onze administratie!
