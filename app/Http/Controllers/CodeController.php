@@ -46,6 +46,35 @@ class CodeController extends Controller
         return view('management.individual_code', ['event' => CollectionEvent::find($request->id)]);
     }
 
+    public function deleteCode(Request $request) {
+        $id = $request->id;
+        $event = CollectionEvent::find($request->id);
+        $event->comment?->delete();
+        $event->delete();
+
+        return to_route('code.list');
+
+    }
+
+    public function editCode(Request $request) {
+        $id = $request->id;
+        $event = CollectionEvent::find($request->id);
+
+        $event->fill($request->toArray());
+        $event->save();
+
+        return back();
+    }
+
+    public function deleteComment(Request $request) {
+        $id = $request->id;
+        $event = CollectionEvent::find($request->id);
+
+        $event->comment->delete();
+
+        return back();
+    }
+
     public function loadPdf(Request $request) {
         $id = $request->id;
 
