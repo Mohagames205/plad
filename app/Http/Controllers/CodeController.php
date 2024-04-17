@@ -14,6 +14,7 @@ class CodeController extends Controller
 
         $request->merge([
             'volunteers' => json_encode(explode(',', $request->get('volunteers'))),
+            'payconiq_uids' => json_encode(explode(',', $request->get('payconiq_uids'))),
             'code' => mt_rand(100000, 999999)
         ]);
 
@@ -25,7 +26,7 @@ class CodeController extends Controller
             'volunteers' => ['required', 'json'],
             'bandage_count' => ['required', 'numeric'],
             'change_received' => ['required', 'numeric'],
-            'payconiq_uid' => ['required', 'numeric'],
+            'payconiq_uids' => ['required', 'json'],
             'status' => ['required', Rule::enum(Status::class)],
         ]);
 

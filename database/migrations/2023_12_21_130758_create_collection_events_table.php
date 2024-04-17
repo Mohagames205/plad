@@ -22,7 +22,7 @@ return new class extends Migration
             $table->json("volunteers");
             $table->integer("bandage_count");
             $table->integer("change_received");
-            $table->integer("payconiq_uid");
+            $table->json("payconiq_uids");
             $table->enum("status", [Status::DRAFT->value, Status::ACTIVE->value, Status::CLOSED->value])->default(Status::DRAFT->value);
         });
     }

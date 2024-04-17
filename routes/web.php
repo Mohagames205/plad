@@ -4,6 +4,8 @@ use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ValidationController;
 use App\Http\Controllers\VolunteerController;
+use App\Models\CollectionEvent;
+use App\Models\EventComment;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +30,41 @@ Route::post('/followup', [VolunteerController::class, 'createFollowup'])->name('
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    // Haal alle collection events op
+    $collectionEvents = CollectionEvent::all();
+
+    // Voor elke collection event, haal de corresponderende event comments op
+    $data = $collectionEvents->flatMap(function ($event) {
+        $comments = EventComment::where('collection_event_id', $event->id)->get();
+        return $comments->map(function ($comment) use ($event) {
+            // Bereken het aantal verkochte bandages
+            $soldBandages = $event->bandage_count - $comment->remaining_bandages;
+            return [
+                'date' => $comment->created_at->toDateString(), // Gebruik de datum van de comment
+                'sold_bandages' => $soldBandages,
+            ];
+        });
+    })->groupBy('date')->map(function ($items, $date) {
+        return [
+            'date' => $date,
+            'total_sold_bandages' => $items->sum('sold_bandages'),
+        ];
+    });
+
+    // Sorteer de data op datum
+    $dataArray = $data->sortBy('date')->values()->toArray();
+
+    // Bereken totaal aantal verkochte bandages
+    $totalSoldBandages = 0;
+    foreach ($dataArray as $dataItem) {
+        $totalSoldBandages += $dataItem['total_sold_bandages'];
+    }
+
+    // Geef de data en totale verkochte bandages door aan de view
+    return view('dashboard', [
+        'dataArray' => $dataArray,
+        'totalSoldBandages' => $totalSoldBandages,
+    ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

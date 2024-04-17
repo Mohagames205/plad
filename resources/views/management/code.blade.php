@@ -62,7 +62,7 @@
 
                                     <div class="px-2 my-3">
                                         <p class="text-sm text-gray-400">Payconiq codes</p>
-                                        <p class="text-lg"> {{ $event->payconiq_uid }} </p>
+                                        <p class="text-lg"> {{ implode(',', json_decode($event->payconiq_uids, true)) }} </p>
                                     </div>
                                 </div>
 

@@ -64,8 +64,8 @@
                         </div>
 
                         <div class="mt-4">
-                            <x-input-label for="payconiq_uid">Payconiq-nummer</x-input-label>
-                            <x-text-input type="number" name="payconiq_uid" id="payconiq_uid" class="block w-1/2"/>
+                            <x-input-label for="payconiq_uids">Payconiq-nummers</x-input-label>
+                            <x-text-input type="text" name="payconiq_uids" id="payconiq_uids" class="block w-1/2"/>
                         </div>
 
                         <div class="mt-4">
