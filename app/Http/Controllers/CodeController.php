@@ -104,6 +104,24 @@ class CodeController extends Controller
         return $pdf->stream('text.pdf');
     }
 
+    public function loadPdfContract(Request $request) {
+        $id = $request->id;
+
+        $event = CollectionEvent::find($request->id);
+
+        $info = [
+            "code" => $event->code,
+            "bandage_count" => $event->bandage_count,
+            "location" => $event->location,
+            "volunteers" => $event->volunteers,
+            "change_received" => $event->change_received,
+        ];
+
+
+        $pdf = PDF::loadView('pdf.contract', $info);
+        return $pdf->stream('text.pdf');
+    }
+
 
 
 

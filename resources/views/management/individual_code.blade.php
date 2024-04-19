@@ -12,6 +12,7 @@
 
                     <div class="rounded-lg shadow-sm p-8 border border-gray-200 bg-white m-6" id="action-buttons">
                         <a href="{{$event->id}}/pdf" target="_blank"> <x-primary-button>Genereer PDF</x-primary-button></a>
+                        <a href="{{$event->id}}/contract" target="_blank"> <x-primary-button>Genereer Overeenkomst</x-primary-button></a>
                         <x-primary-button>Aanpassen</x-primary-button>
                         <x-primary-button x-data="" x-on:click.prevent="$dispatch('open-modal', 'status-change')">Status aanpassen</x-primary-button>
                         @include('management.modals.edit-action-status-form')

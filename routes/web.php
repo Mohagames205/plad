@@ -86,6 +86,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/code/{id}/pdf', [CodeController::class, 'loadPdf']);
 
+    Route::get('/code/{id}/contract', [CodeController::class, 'loadPdfContract']);
+
     Route::post('/create_code', [CodeController::class, 'create']);
 
     Route::delete('/code/{id}/comment', [CodeController::class, 'deleteComment'])->name('comment.delete');
