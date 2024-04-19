@@ -13,7 +13,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
 
-                    <div class="bg-red-500 p-6 text-white mt-5 rounded-lg mb-4">
+                    <div class="bg-blue-500 p-6 text-white mt-5 rounded-lg mb-4">
                         <p class="font-bold">Hulp nodig? Snap je iets niet? Gaat er iets mis met de verkoop?</p>
 
                         <p> Stuur dan een e-mail naar pr@leuven.rodekruis.be.<p>
@@ -79,7 +79,7 @@
 
                         <div class="px-2 my-3">
                             <p class="text-sm text-gray-400">Payconiq codes</p>
-                            <p class="text-lg"> {{ $collectionEvent->payconiq_uid }} </p>
+                            <p class="text-lg"> {{ implode(',', json_decode($event->payconiq_uids, true)) }} </p>
                         </div>
                     </div>
                 </div>

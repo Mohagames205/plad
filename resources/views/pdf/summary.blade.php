@@ -134,12 +134,16 @@
             <td>{{ $end_time }}</td>
         </tr>
         <tr>
+            <td>Payconiq-codes</td>
+            <td>{{ implode(',', json_decode($event->payconiq_uids, true)) }}</td>
+        </tr>
+        <tr>
             <td>Status</td>
             <td>{{ \App\Enums\Status::from($status)->readable() }}</td>
         </tr>
     </table>
 
-    @if(isset($comments))
+    @if(isset($money_after_event))
         <div class="optional-info">
             <h3>Optionele Informatie</h3>
             <table>
