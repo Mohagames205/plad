@@ -90,6 +90,7 @@ class CodeController extends Controller
             "end_time" => $event->end_time,
             "change_received" => $event->change_received,
             "status" => $event->status,
+            "payconiq_uids" => $event->payconiq_uids,
         ];
 
         if ($event->comment) {

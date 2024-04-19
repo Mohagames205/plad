@@ -135,7 +135,7 @@
         </tr>
         <tr>
             <td>Payconiq-codes</td>
-            <td>{{ implode(',', json_decode($event->payconiq_uids, true)) }}</td>
+            <td>{{ implode(',', json_decode($payconiq_uids, true)) }}</td>
         </tr>
         <tr>
             <td>Status</td>
