@@ -115,6 +115,8 @@ class CodeController extends Controller
             "location" => $event->location,
             "volunteers" => $event->volunteers,
             "change_received" => $event->change_received,
+            "start_time" => $event->start_time,
+            "end_time" => $event->end_time,
         ];
 
 

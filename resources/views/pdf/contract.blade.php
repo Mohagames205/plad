@@ -114,6 +114,10 @@
             <td>{{ $location }}</td>
         </tr>
         <tr>
+            <td>Tijd</td>
+            <td>{{ $start_time }} tot {{ $end_time }}</td>
+        </tr>
+        <tr>
             <td>Aantal ontvangen pleisters</td>
             <td>{{ $bandage_count }} pleisters</td>
         </tr>
