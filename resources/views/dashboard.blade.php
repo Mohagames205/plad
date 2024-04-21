@@ -12,7 +12,10 @@
                     <div class="flex gap-6">
                         <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
                             <h3 class="text-2xl tracking-tight text-gray-800 text-center">Totaal verkocht</h3>
-                            <p class="text-gray-800 text-lg mt-4">{{  \App\Models\CollectionEvent::sum('bandage_count') - \App\Models\EventComment::sum('remaining_bandages') }}</p>
+
+
+
+                            <p class="text-gray-800 text-lg mt-4">{{  $totalSellableBandages - \App\Models\EventComment::sum('remaining_bandages') }}</p>
                         </div>
 
                         <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">

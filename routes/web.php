@@ -60,10 +60,27 @@ Route::get('/dashboard', function () {
         $totalSoldBandages += $dataItem['total_sold_bandages'];
     }
 
+
+
+    $totalBandages = CollectionEvent::all();
+    $sum = 0;
+    foreach ($totalBandages as $bandage) {
+
+        if($bandage->comment) {
+            $sum += $bandage->bandage_count;
+        }
+    }
+
+
+
+
+
+
     // Geef de data en totale verkochte bandages door aan de view
     return view('dashboard', [
         'dataArray' => $dataArray,
         'totalSoldBandages' => $totalSoldBandages,
+        'totalSellableBandages' => $sum,
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');
 
@@ -84,6 +101,8 @@ Route::middleware('auth')->group(function () {
 
     Route::patch('/code/{id}', [CodeController::class, 'editCode'])->name('code.edit');
 
+    Route::get('/code/{id}/edit', [CodeController::class, 'editAction'])->name('code.edit');
+
     Route::get('/code/{id}/pdf', [CodeController::class, 'loadPdf']);
 
     Route::get('/code/{id}/contract', [CodeController::class, 'loadPdfContract']);
@@ -96,7 +115,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/code/{id}/validate/money', [ValidationController::class, 'validateMoney'])->name('validation.money.create');
     Route::get('/code/{id}/validate/money', [ValidationController::class, 'viewMoneyValidation'])->name('validation.money.see');
     Route::delete('/code/{id}/validate/money', [ValidationController::class, 'deleteMoneyValidation'])->name('validation.money.delete');
-
+;
     Route::get('/code/{id}/validate/bandages/create', [ValidationController::class, 'viewBandages'])->name('validation.bandages');
     Route::post('/code/{id}/validate/bandages', [ValidationController::class, 'validateBandages'])->name('validation.bandage.create');
     Route::get('/code/{id}/validate/bandages', [ValidationController::class, 'viewBandageValidation'])->name('validation.bandage.see');

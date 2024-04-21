@@ -22,6 +22,7 @@
                     <h1 class="text-2xl font-bold mb-4">Pleisteractie #{{ $collectionEvent->code }} <span class="bg-blue-100 text-blue-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded">{{ \App\Enums\Status::from($collectionEvent->status)->readable() }}</span></h1>
 
 
+                    Alles in orde! Bedankt
                     </div>
                 </div>
             </div>
