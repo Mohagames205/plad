@@ -64,7 +64,7 @@ Route::get('/dashboard', function () {
         ->selectRaw('SUM(event_comments.remaining_bandages) AS total_remaining_bandages, SUM(collection_events.bandage_count) AS total_bandages')
         ->first();
 
-    $sold = $sums->total_remaining_bandages - $sums->total_bandages_sold;
+    $sold = $sums->total_remaining_bandages - $sums->total_bandages;
 
 
     // Geef de data en totale verkochte bandages door aan de view
