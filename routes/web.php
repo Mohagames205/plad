@@ -71,15 +71,19 @@ Route::get('/dashboard', function () {
         }
     }
 
+    $comments = EventComment::join('collection_events', 'event_comments.collection_event_id', '=', 'collection_events.id')->get();
 
+    $sums = EventComment::join('collection_events', 'event_comments.collection_event_id', '=', 'collection_events.id')
+        ->selectRaw('SUM(event_comments.bandages_sold) AS total_bandages_sold, SUM(collection_events.remaining_bandages) AS total_remaining_bandages')
+        ->first();
 
-
+    $sold = $sums->total_remaining_bandages - $sums->total_bandages_sold;
 
 
     // Geef de data en totale verkochte bandages door aan de view
     return view('dashboard', [
         'dataArray' => $dataArray,
-        'totalSoldBandages' => $totalSoldBandages,
+        'totalSoldBandages' => $sold,
         'totalSellableBandages' => $sum,
     ]);
 })->middleware(['auth', 'verified'])->name('dashboard');

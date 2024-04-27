@@ -15,7 +15,7 @@
 
 
 
-                            <p class="text-gray-800 text-lg mt-4">{{  $totalSellableBandages - \App\Models\EventComment::sum('remaining_bandages') }}</p>
+                            <p class="text-gray-800 text-lg mt-4">{{  $sold }}</p>
                         </div>
 
                         <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
