@@ -74,7 +74,7 @@ Route::get('/dashboard', function () {
     $comments = EventComment::join('collection_events', 'event_comments.collection_event_id', '=', 'collection_events.id')->get();
 
     $sums = EventComment::join('collection_events', 'event_comments.collection_event_id', '=', 'collection_events.id')
-        ->selectRaw('SUM(event_comments.bandages_sold) AS total_bandages_sold, SUM(collection_events.remaining_bandages) AS total_remaining_bandages')
+        ->selectRaw('SUM(event_comments.remaining_bandages) AS total_remaining_bandages, SUM(collection_events.bandage_count) AS total_bandages')
         ->first();
 
     $sold = $sums->total_remaining_bandages - $sums->total_bandages_sold;
