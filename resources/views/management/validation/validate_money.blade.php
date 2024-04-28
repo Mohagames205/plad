@@ -91,7 +91,7 @@
                             </tr>
                             <tr>
                                 <td>Payconiq nummers</td>
-                                <td>{{ $event->payconiq_uid }}</td>
+                                <td> {{ implode(', ', json_decode($event->payconiq_uids, true)) }} </td>
                             </tr>
 
                             <tr>
