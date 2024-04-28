@@ -76,6 +76,7 @@
             colReorder: true,
             responsive: true,
             dom: 'Qfrtip',
+            order: [[1, 'desc']]
         });
 
 
