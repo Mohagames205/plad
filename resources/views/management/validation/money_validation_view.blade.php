@@ -62,13 +62,33 @@
                                 <td colspan="2" class="text-center bg-blue-500 text-white font-bold">Gevalideerde gegevens</td>
                             </tr>
                             <tr class="bg-blue-100">
-                                <td>Overgehouden pleisters</td>
-                                <td>{{ $validation->remaining_bandages }}</td>
+                                <td>Cash</td>
+                                <td>€{{ $validation->cash_money }}</td>
                             </tr>
                             <tr class="bg-blue-100">
-                                <td>Aantal verkochte pleisters</td>
-                                <td>{{ ($validation->event->bandage_count - $validation->remaining_bandages) }}</td>
+                                <td>Payconiq</td>
+                                <td>€{{ $validation->payconiq_money }}</td>
                             </tr>
+                            <tr class="bg-blue-100">
+                                <td>SumUp</td>
+                                <td>€{{ $validation->sumup_money }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" class="text-center bg-blue-500 text-white font-bold">Totaal gevalideerd</td>
+                            </tr>
+                            <tr class="bg-blue-300">
+                                <td>Cash</td>
+                                <td>€{{ $validation->cash_money }}</td>
+                            </tr>
+                            <tr class="bg-blue-300">
+                                <td>Digitaal</td>
+                                <td>€{{ $validation->payconiq_money +  $validation->sumup_money}}</td>
+                            </tr>
+                            <tr class="bg-blue-500 text-white">
+                                <td>Totaal (Digitaal + cash)</td>
+                                <td>€{{ $validation->payconiq_money +  $validation->sumup_money + $validation->cash_money}}</td>
+                            </tr>
+
 
                         </table>
 
