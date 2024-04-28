@@ -79,11 +79,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/create_code', function () {
+    Route::get('/code/create', function () {
         return view('management.create_code');
     })->name('management.create_code');
 
     Route::get('/code', [CodeController::class, 'listCodes'])->name('code.list');
+    Route::post('/code', [CodeController::class, 'create'])->name('code.create');
+
     Route::get('/code/export', [CodeController::class, 'exportCsv'])->name('code.export');
 
     Route::get('/code/{id}', [CodeController::class, 'viewCode'])->name('code.view');
@@ -97,8 +99,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/code/{id}/pdf', [CodeController::class, 'loadPdf']);
 
     Route::get('/code/{id}/contract', [CodeController::class, 'loadPdfContract']);
-
-    Route::post('/create_code', [CodeController::class, 'create']);
 
     Route::delete('/code/{id}/comment', [CodeController::class, 'deleteComment'])->name('comment.delete');
 
