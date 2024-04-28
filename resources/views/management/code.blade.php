@@ -29,28 +29,28 @@
 
                             <tr>
                                 <td>
-                                    <a href="code/{{ $event->id }}" class="hover:underline text-red-600 hover:text-red-800 visited:text-red-600"><h5 class="text-xl font-bold tracking-tight">{{ $event->location }}</h5></a>
+                                    <a href="code/{{ $event->id }}" class="underline"><h5 class="text-xl font-bold tracking-tight">{{ $event->location }}</h5></a>
                                 </td>
                                 <td>
-                                    <p class="text-lg">{{$event->start_time}}</p>
+                                    <p class="text-md">{{$event->start_time}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-lg">{{$event->end_time}}</p>
+                                    <p class="text-md">{{$event->end_time}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-lg">{{ implode(", ", json_decode($event->volunteers)) }}</p>
+                                    <p class="text-md">{{ implode(", ", json_decode($event->volunteers)) }}</p>
                                 </td>
                                 <td>
-                                    <p class="text-lg">{{$event->bandage_count}}</p>
+                                    <p class="text-md">{{$event->bandage_count}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-lg">€{{$event->change_received}}</p>
+                                    <p class="text-md">€{{$event->change_received}}</p>
                                 </td>
                                 <td>
-                                    <p class="text-lg"> {{ implode(',', json_decode($event->payconiq_uids, true)) }} </p>
+                                    <p class="text-md"> {{ implode(', ', json_decode($event->payconiq_uids, true)) }} </p>
                                 </td>
                                 <td>
-                                    <p>
+                                    <p class="text-md {{ $event->status == '1' ? 'text-green-600' : 'text-red-600' }}">
                                         {{ \App\Enums\Status::from($event->status)->readable() }}
                                     </p>
                                 </td>
