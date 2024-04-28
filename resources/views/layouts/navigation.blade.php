@@ -31,7 +31,7 @@
                             </x-slot>
 
                             <x-slot name="content">
-                                <x-dropdown-link :href="route('code.list')">
+                                <x-dropdown-link :href="route('code.list')" >
                                     {{ __('Lijst') }}
                                 </x-dropdown-link>
 
@@ -109,10 +109,10 @@
 
 
             <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('management.create_code')">
+                <x-responsive-nav-link :href="route('management.create_code')" :active="request()->routeIs('management.create_code')">
                     {{ __('Aanmaken') }}
                 </x-responsive-nav-link>
-                <x-responsive-nav-link :href="route('code.list')">
+                <x-responsive-nav-link :href="route('code.list')" :active="request()->routeIs('code.list')">
                     {{ __('Lijst') }}
                 </x-responsive-nav-link>
 
