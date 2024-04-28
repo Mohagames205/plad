@@ -84,6 +84,7 @@ Route::middleware('auth')->group(function () {
     })->name('management.create_code');
 
     Route::get('/code', [CodeController::class, 'listCodes'])->name('code.list');
+    Route::get('/code/export', [CodeController::class, 'exportCsv'])->name('code.export');
 
     Route::get('/code/{id}', [CodeController::class, 'viewCode'])->name('code.view');
 

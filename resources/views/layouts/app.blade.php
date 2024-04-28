@@ -11,6 +11,8 @@
         <link rel="preconnect" href="https://fonts.bunny.net">
 
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/v/dt/dt-2.0.5/sb-1.7.1/sp-2.3.1/sl-2.0.1/datatables.min.css" rel="stylesheet">
+        <link href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.dataTables.css" rel="stylesheet">
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
