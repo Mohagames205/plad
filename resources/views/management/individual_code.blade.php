@@ -142,7 +142,7 @@
 
                                 <div class="px-2 my-3" >
                                     <p class="text-sm text-gray-400">Code</p>
-                                    <p class="text-lg">{{ $event->code }}</p>
+                                    <a href="/selling_event?code={{ $event->code }}" class="underline text-blue-600 hover:text-blue-800 visited:text-purple-600"><p class="text-lg">{{ $event->code }}</p></a>
                                 </div>
                                 <hr>
 
