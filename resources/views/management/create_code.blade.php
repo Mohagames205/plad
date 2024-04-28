@@ -20,7 +20,7 @@
                         </div>
                     @endif
 
-                    <form method="POST">
+                    <form method="POST" action="{{ route('code.create') }}">
                         @csrf
 
 
