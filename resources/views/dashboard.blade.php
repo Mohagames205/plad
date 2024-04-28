@@ -5,30 +5,32 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
+    <div class="pt-10">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class=" overflow-hidden  sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="flex gap-6">
-                        <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
-                            <h3 class="text-2xl tracking-tight text-gray-800 text-center">Totaal verkocht</h3>
-
-
-
-                            <p class="text-gray-800 text-lg mt-4 text-center">{{  $sold }}</p>
+                        <div class="p-6 border border-gray-600 rounded-lg bg-gray-900 basis-1/3">
+                            <h3 class="text-2xl tracking-tight text-white text-center">Totaal verkocht</h3>
+                            <p class="text-white text-lg mt-4 text-center">{{  $sold }}</p>
                         </div>
 
-                        <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
-                            <h3 class="text-2xl tracking-tight text-gray-800 text-center">Totale winst</h3>
-                            <p class="text-gray-800 text-lg mt-4 text-center">€{{ \App\Models\EventComment::sum('money_after_event') - \App\Models\CollectionEvent::sum('change_received') }}</p>
+                        <div class="p-6 border border-gray-600 rounded-lg bg-gray-900 basis-1/3">
+                            <h3 class="text-2xl tracking-tight text-white text-center">Totale winst</h3>
+                            <p class="text-white text-lg mt-4 text-center">€{{ \App\Models\EventComment::sum('money_after_event') - \App\Models\CollectionEvent::sum('change_received') }}</p>
                         </div>
-                        <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
-                            <h3 class="text-2xl tracking-tight text-gray-800 text-center">Aantal verkoopsacties</h3>
-                            <p class="text-gray-800 text-lg mt-4 text-center">{{ \App\Models\CollectionEvent::count() }}</p>
+                        <div class="p-6 border border-gray-600 rounded-lg bg-gray-900 basis-1/3">
+                            <h3 class="text-2xl tracking-tight text-white text-center">Aantal verkoopsacties</h3>
+                            <p class="text-white text-lg mt-4 text-center">{{ \App\Models\CollectionEvent::count() }}</p>
                         </div>
                     </div>
 
-                    <div style="width: 100%;" class="text-center mt-10"><canvas class="inline" id="acquisitions"></canvas></div>
+                    <div class="bg-gray-900 p-20 border border-gray-600 rounded-lg mt-10">
+                        <div class="flex justify-center">
+                            <div style="width: 80%;" class="text-center text-white"><canvas class="inline" id="acquisitions"></canvas></div>
+                        </div>
+                    </div>
+
 
                 </div>
             </div>
@@ -39,6 +41,8 @@
         setTimeout(() => {
             (async function() {
                 const data = <?php echo json_encode($dataArray); ?>;
+
+                Chart.defaults.color = "#fff";
 
                 new Chart(
                     document.getElementById('acquisitions'),

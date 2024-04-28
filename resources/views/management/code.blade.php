@@ -6,9 +6,15 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
+        <div class=" mx-auto sm:px-6 lg:px-8">
+            <div class="overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-100">
+                    <h2 class="font-semibold text-3xl leading-tight text-white pb-8">Verkoopacties</h2>
+                    <a href="{{ route('management.create_code') }}"><x-secondary-button>Actie aanmaken</x-secondary-button></a>
+
+                    <hr class="border-gray-600 mt-5">
+
+
                     <table id="codes" class="display">
                         <thead>
                         <tr>
@@ -27,7 +33,7 @@
                         @forelse($events as $event)
 
 
-                            <tr>
+                            <tr onclick="window.location='code/{{ $event->id }}';" class="hover:cursor-pointer">
                                 <td>
                                     <a href="code/{{ $event->id }}" class="underline"><h5 class="text-xl font-bold tracking-tight">{{ $event->location }}</h5></a>
                                 </td>
