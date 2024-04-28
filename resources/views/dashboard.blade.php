@@ -15,16 +15,20 @@
 
 
 
-                            <p class="text-gray-800 text-lg mt-4">{{  $sold }}</p>
+                            <p class="text-gray-800 text-lg mt-4 text-center">{{  $sold }}</p>
                         </div>
 
                         <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
                             <h3 class="text-2xl tracking-tight text-gray-800 text-center">Totale winst</h3>
-                            <p class="text-gray-800 text-lg mt-4">€{{ \App\Models\EventComment::sum('money_after_event') - \App\Models\CollectionEvent::sum('change_received') }}</p>
+                            <p class="text-gray-800 text-lg mt-4 text-center">€{{ \App\Models\EventComment::sum('money_after_event') - \App\Models\CollectionEvent::sum('change_received') }}</p>
+                        </div>
+                        <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
+                            <h3 class="text-2xl tracking-tight text-gray-800 text-center">Aantal verkoopsacties</h3>
+                            <p class="text-gray-800 text-lg mt-4 text-center">{{ \App\Models\CollectionEvent::count() }}</p>
                         </div>
                     </div>
 
-                    <div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
+                    <div style="width: 100%;" class="text-center mt-10"><canvas class="inline" id="acquisitions"></canvas></div>
 
                 </div>
             </div>
@@ -44,7 +48,7 @@
                             labels: data.map(row => row.date),
                             datasets: [
                                 {
-                                    label: 'Sold bandages per day',
+                                    label: 'Verkochte pleisters / dag',
                                     data: data.map(row => row.total_sold_bandages)
                                 }
                             ]
