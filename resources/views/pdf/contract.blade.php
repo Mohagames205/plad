@@ -139,7 +139,7 @@
         <p>
             Na het beëindigen van de verkoop retourneer ik:    </p>
         <ul>
-            <li> de niet-verkochte pleister;</li>
+            <li> de niet-verkochte pleisters;</li>
             <li> het verschuldigde bedrag; </li>
             <li>het ontvangen materiaal;</li>
         </ul>
@@ -150,7 +150,7 @@
             de gemeente, AWV en VLAIO.
         </p>
         <p>
-            <i>Indien u een vereniging vertegenwoordigd:</i> Na het beëindigen van de verkoop moet de opbrengst volledig gestort worden op de
+            <i>Indien u een vereniging vertegenwoordigt:</i> Na het beëindigen van de verkoop moet de opbrengst volledig gestort worden op de
             rekening van het <b>Rode Kruis - Leuven.</b> De afdeling zal dan het bedrag ten voordele
             van de vereniging storten.
         </p>
