@@ -6,15 +6,18 @@
     </x-slot>
 
     <div class="py-12">
-        <div class=" mx-auto sm:px-6 lg:px-8">
+        <div class="mx-auto sm:px-6 lg:px-8">
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-100">
-                    <h2 class="font-semibold text-3xl leading-tight text-white pb-8">Verkoopacties</h2>
-                    <a href="{{ route('management.create_code') }}"><x-primary-button>Actie aanmaken</x-primary-button></a>
+                    <div class="bg-gray-900 p-6 border border-gray-600 rounded-lg">
+                        <h2 class="font-semibold text-3xl leading-tight text-white">Verkoopacties</h2>
+                        <p class="mb-5">Maak snel een verkoopactie aan. Vrijwilligers kunnen dan aan de hand van <b>automatisch gegenereerde</b> code verkoopsgegevens invoeren.</p>
+                        <a href="{{ route('management.create_code') }}"><x-primary-button>Actie aanmaken</x-primary-button></a>
 
-                    <hr class="border-gray-600 mt-5">
+                    </div>
 
-
+                    <div class="bg-gray-900 p-6 border border-gray-600 rounded-lg mt-5">
+                    <h2 class="font-semibold text-3xl leading-tight text-white">Overzicht</h2>
                     <table id="codes" class="display">
                         <thead>
                         <tr>
@@ -70,6 +73,8 @@
 
                     </table>
 
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -79,7 +84,6 @@
     <script type="module">
 
         let table = new DataTable('#codes', {
-            colReorder: true,
             responsive: true,
             dom: 'Qfrtip',
             order: [[1, 'desc']]

@@ -43,6 +43,7 @@
                 const data = <?php echo json_encode($dataArray); ?>;
 
                 Chart.defaults.color = "#fff";
+                Chart.defaults.borderColor = "#888888";
 
                 new Chart(
                     document.getElementById('acquisitions'),
@@ -56,7 +57,7 @@
                                     data: data.map(row => row.total_sold_bandages)
                                 }
                             ]
-                        }
+                        },
                     }
                 );
             })();

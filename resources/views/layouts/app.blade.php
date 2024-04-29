@@ -75,11 +75,19 @@
                     </div>
                 </div>
 
-                <div class="mt-auto p-6 text-red-400 text-base justify-self-end cursor-pointer hover:bg-gray-800">
-                    <div class="flex gap-6">
-                        <span class="material-symbols-outlined self-center text-base">logout</span> Uitloggen
-                    </div>
-                </div>
+
+            <div class="mt-auto justify-self-end">
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault(); this.closest('form').submit();">
+                        <div class="mt-auto p-6 text-red-400 text-base justify-self-end cursor-pointer hover:bg-gray-800">
+                            <div class="flex gap-6">
+                                <span class="material-symbols-outlined self-center text-base">logout</span> Uitloggen
+                            </div>
+                        </div>
+                    </a>
+                </form>
+            </div>
 
             </div>
         </div>
