@@ -10,7 +10,7 @@
             <div class="overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-100">
                     <h2 class="font-semibold text-3xl leading-tight text-white pb-8">Verkoopacties</h2>
-                    <a href="{{ route('management.create_code') }}"><x-secondary-button>Actie aanmaken</x-secondary-button></a>
+                    <a href="{{ route('management.create_code') }}"><x-primary-button>Actie aanmaken</x-primary-button></a>
 
                     <hr class="border-gray-600 mt-5">
 
