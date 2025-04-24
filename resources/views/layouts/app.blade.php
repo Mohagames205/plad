@@ -57,8 +57,8 @@
                        </div>
                     </div>
                 </a>
-                <a href="{{ route('code.list') }}">
-                    <div class="p-6 text-gray-300 text-base {{ request()->routeIs('code.list') ? 'text-white font-bold border-r-2 ' : '' }} hover:bg-gray-800 cursor-pointer">
+                <a href="{{ route('event.list') }}">
+                    <div class="p-6 text-gray-300 text-base {{ request()->routeIs('event.list') ? 'text-white font-bold border-r-2 ' : '' }} hover:bg-gray-800 cursor-pointer">
                             <div class="flex gap-6">
                                 <span class="material-symbols-outlined self-center text-base">payments</span> Verkoopacties
                             </div>

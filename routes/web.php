@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CodeController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ValidationController;
 use App\Http\Controllers\VolunteerController;
@@ -82,6 +83,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/code/create', function () {
         return view('management.create_code');
     })->name('management.create_code');
+
+    Route::get('/event', [EventController::class, 'listEvents'])->name('event.list');
 
     Route::get('/code', [CodeController::class, 'listCodes'])->name('code.list');
     Route::post('/code', [CodeController::class, 'create'])->name('code.create');
