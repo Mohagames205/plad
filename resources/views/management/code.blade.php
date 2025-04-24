@@ -20,6 +20,7 @@
                             <th>Ontvangen wisselgeld</th>
                             <th>Payconiq codes</th>
                             <th>Status</th>
+                            <th>Jaar</th>
                         </tr>
                         </thead>
 
@@ -53,6 +54,9 @@
                                     <p class="text-md {{ $event->status == '1' ? 'text-green-600' : 'text-red-600' }}">
                                         {{ \App\Enums\Status::from($event->status)->readable() }}
                                     </p>
+                                </td>
+                                <td>
+                                    <p class="text-md">{{$event->year}}</p>
                                 </td>
                             </tr>
                         @empty
