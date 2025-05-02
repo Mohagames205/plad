@@ -20,7 +20,20 @@
 
                         <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
                             <h3 class="text-2xl tracking-tight text-gray-800 text-center">Totale winst</h3>
-                            <p class="text-gray-800 text-lg mt-4 text-center">€{{ \App\Models\EventComment::where('year', 2025)->sum('money_after_event') - \App\Models\CollectionEvent::where('year', 2025)->sum('change_received') }}</p>
+                            @php
+                                $year = 2025;
+
+                                $totalMoneyAfter = \App\Models\EventComment::join('collection_events', 'event_comments.collection_event_id', '=', 'collection_events.id')
+                                    ->where('collection_events.year', $year)
+                                    ->sum('event_comments.money_after_event');
+
+                                $totalChangeReceived = \App\Models\CollectionEvent::where('year', $year)->sum('change_received');
+
+                                $netAmount = $totalMoneyAfter - $totalChangeReceived;
+                            @endphp
+
+                            <p class="text-gray-800 text-lg mt-4 text-center">€{{ $netAmount }}</p>
+
                         </div>
                         <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
                             <h3 class="text-2xl tracking-tight text-gray-800 text-center">Aantal verkoopsacties</h3>
