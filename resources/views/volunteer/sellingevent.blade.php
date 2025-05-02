@@ -56,7 +56,7 @@
 
                                 <!-- Geldbedrag na verkoop -->
                                 <div class="mb-4">
-                                    <x-input-label for="money_after_event" :value="__('Geld na verkoop')" />
+                                    <x-input-label for="money_after_event" :value="__('Geld na verkoop (met puntnotatie, geen komma: 10.30 i.p.v. 10,30)')" />
                                     <x-text-input id="money_after_event" class="block mt-1 w-3/4" type="text" name="money_after_event" required />
                                 </div>
 
@@ -128,7 +128,7 @@
                                 <hr>
 
                                 <div class="px-2 my-3">
-                                    <p class="text-sm text-gray-400">Ontvangen wisselgeld (met puntnotatie, geen komma: 10.30 i.p.v. 10,30)</p>
+                                    <p class="text-sm text-gray-400">Ontvangen wisselgeld</p>
                                     <p class="text-lg"> €{{$collectionEvent->change_received}} </p>
                                 </div>
 
