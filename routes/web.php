@@ -31,7 +31,7 @@ Route::post('/followup', [VolunteerController::class, 'createFollowup'])->name('
 
 Route::get('/dashboard', function () {
     // Haal alle collection events op
-    $collectionEvents = CollectionEvent::where('year', intval(date('Y')))->all();
+    $collectionEvents = CollectionEvent::where('year', intval(date('Y')))->get();
 
     // Voor elke collection event, haal de corresponderende event comments op
     $data = $collectionEvents->flatMap(function ($event) {
