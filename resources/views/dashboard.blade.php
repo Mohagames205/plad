@@ -20,11 +20,11 @@
 
                         <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
                             <h3 class="text-2xl tracking-tight text-gray-800 text-center">Totale winst</h3>
-                            <p class="text-gray-800 text-lg mt-4 text-center">€{{ \App\Models\EventComment::sum('money_after_event') - \App\Models\CollectionEvent::sum('change_received') }}</p>
+                            <p class="text-gray-800 text-lg mt-4 text-center">€{{ \App\Models\EventComment::where('year', 2025)->sum('money_after_event') - \App\Models\CollectionEvent::where('year', 2025)->sum('change_received') }}</p>
                         </div>
                         <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
                             <h3 class="text-2xl tracking-tight text-gray-800 text-center">Aantal verkoopsacties</h3>
-                            <p class="text-gray-800 text-lg mt-4 text-center">{{ \App\Models\CollectionEvent::count() }}</p>
+                            <p class="text-gray-800 text-lg mt-4 text-center">{{ \App\Models\CollectionEvent::where('year', 2025)->count() }}</p>
                         </div>
                     </div>
 

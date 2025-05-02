@@ -61,6 +61,7 @@ Route::get('/dashboard', function () {
     }
 
     $sums = EventComment::join('collection_events', 'event_comments.collection_event_id', '=', 'collection_events.id')
+        ->where('collection_events.year', date('Y'))
         ->selectRaw('SUM(event_comments.remaining_bandages) AS total_remaining_bandages, SUM(collection_events.bandage_count) AS total_bandages')
         ->first();
 
