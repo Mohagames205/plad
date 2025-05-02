@@ -128,7 +128,7 @@
                                 <hr>
 
                                 <div class="px-2 my-3">
-                                    <p class="text-sm text-gray-400">Ontvangen wisselgeld</p>
+                                    <p class="text-sm text-gray-400">Ontvangen wisselgeld (met puntnotatie, geen komma: 10.30 i.p.v. 10,30)</p>
                                     <p class="text-lg"> €{{$collectionEvent->change_received}} </p>
                                 </div>
 
