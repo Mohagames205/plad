@@ -21,7 +21,7 @@
                         <div class="shadow-sm p-6 border border-gray-200 rounded-lg basis-1/3">
                             <h3 class="text-2xl tracking-tight text-gray-800 text-center">Totale winst</h3>
                             @php
-                                $year = 2025;
+                                $year = intval(date('Y'));
 
                                 $totalMoneyAfter = \App\Models\EventComment::join('collection_events', 'event_comments.collection_event_id', '=', 'collection_events.id')
                                     ->where('collection_events.year', $year)
